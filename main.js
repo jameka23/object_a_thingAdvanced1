@@ -35,25 +35,31 @@ URL for registering to vote
 */
 const campaign = {
     congressional_district: "5th",
-    platform_issues: ["Taxes", "Jobs", "Infrastructure", "Health Care", "Crime and Enforcement"],
+    platform_issues: {
+        Taxes: "tax all you peasants",
+        Jobs: "work suckas",
+        Infrastructure: "who needs roads?",
+        health_care: "medicare for alllllll",
+        crime_and_enforcement: "I police myself"
+    },
     url: "donation.com",
-    calendar_events: [],
-    vol_info = {
-        name: "",
-        address: "",
-        email: "",
-        phone_number: "",
-        availability: [],
-        tasks: []
+    calendar_events: ["golf-day with kids"],
+    vol_info: {
+        name: "Jameka",
+        address: "lala land",
+        email: "jameka@gmail.com",
+        phone_number: "1234567",
+        availability: ["tues"],
+        tasks: ["writer"]
     },
-    biography: [], // keeping as an array 
-    image_gallery = {
-        head_shot: [],
-        family: [],
-        constituents: []
+    biography: ["born in Germany"], // keeping as an array 
+    image_gallery: {
+        head_shot: ["image1"],
+        family: ["image2"],
+        constituents: ["image3"]
     },
-    mission: "",
-    vote_url: "",
+    mission: "Love people",
+    vote_url: "vote.org",
 };
 
 // ADVANCED CHALLENGE
@@ -83,16 +89,24 @@ function addToImageGallery (newImage, type) {
     }else {
         campaign.image_gallery.constituents.push(newImage);
     }
+    console.table(campaign.image_gallery)
 }
 
 function changeBiography (newBiography) {
     campaign.biography.push(newBiography);
+    console.log(campaign.biography);
 }
 
 function changePlatform (topic, newPlatformStatement) {
-    for (let i = 0; i < campaign.platform_issues.length; i++){
-        if (topic === campaign.platform_issues[i]){
-            campaign.platform_issues[i] = newPlatformStatement
+    for (key in campaign.platform_issues){
+        if (key === topic){
+            campaign.platform_issues[topic] = newPlatformStatement
         }
     }
+    // campaign.platform_issues.topic = newPlatformStatement
+    console.table(campaign.platform_issues)
 }
+
+addToImageGallery("hello", "family");
+changeBiography("hello");
+changePlatform("Jobs", "equal shit");
